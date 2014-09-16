@@ -141,10 +141,10 @@ actions vacpp.compile.c
 
 actions vacpp.compile.c++
 {
-    $(VA_CXX_COMPILER) -c $(OPTIONS) $(USER_OPTIONS) -I$(BOOST_ROOT) -U$(UNDEFS) -D$(DEFINES) $(CFLAGS) $(C++FLAGS) -I"$(HDRS)" -I"$(STDHDRS)" -o "$(<)" "$(>)"
+    "$(CONFIG_COMMAND)" -c $(OPTIONS) $(USER_OPTIONS) -I$(BOOST_ROOT) -U$(UNDEFS) -D$(DEFINES) $(CFLAGS) $(C++FLAGS) -I"$(HDRS)" -I"$(STDHDRS)" -o "$(<)" "$(>)"
 }
 
 actions updated together piecemeal vacpp.archive
 {
-    ar $(ARFLAGS) ru "$(<)" "$(>)"
+    /usr/bin/ar $(ARFLAGS) ru "$(<)" "$(>)"
 }
