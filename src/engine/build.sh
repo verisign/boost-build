@@ -70,6 +70,8 @@ Guess_Toolset ()
     elif test_uname IRIX64 ; then BOOST_JAM_TOOLSET=mipspro
     elif test_uname OSF1 ; then BOOST_JAM_TOOLSET=tru64cxx
     elif test_uname QNX && test_path qcc ; then BOOST_JAM_TOOLSET=qcc
+    elif test_uname AIX && test_path xlc ; then BOOST_JAM_TOOLSET=vacpp
+    elif test_uname AIX && test_path /usr/vac/bin/xlc ; then BOOST_JAM_TOOLSET=vacpp
     elif test_path gcc ; then BOOST_JAM_TOOLSET=gcc
     elif test_path icc ; then BOOST_JAM_TOOLSET=intel-linux
     elif test -r /opt/intel/cc/9.0/bin/iccvars.sh ; then
@@ -171,6 +173,10 @@ case $BOOST_JAM_TOOLSET in
 
     vacpp)
     BOOST_JAM_CC=xlc
+    if ! test_path xlc && test -x /usr/vac/bin/xlc; then
+        PATH=/usr/vac/bin:$PATH
+        export PATH
+    fi
     ;;
 
     como)
